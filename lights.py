@@ -63,40 +63,6 @@ class ColorChase(BaseStripAnim):
 	def step(self, amt = 1):
 		self._led.all_off() #because I am lazy
 		for i in range(self._width):
-			"""if (self._step%2):
-				self._led.set(self._start + i + 0 , colors.Red)
-				self._led.set(self._start + i + 1 , colors.Red)
-				self._led.set(self._start + i + 2 , colors.Red)
-				self._led.set(self._start + i + 3 , colors.Red)
-				self._led.set(self._start + i + 4 , colors.Red)
-				self._led.set(self._start + i + 5 , colors.Red)
-				self._led.set(self._start + i + 6 , colors.Red)
-				self._led.set(self._start + i + 7 , colors.Red)
-			else:
-				self._led.set(self._start + self._step%8 + i + 0 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 1 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 2 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 3 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 4 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 5 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 6 , colors.color_scale((255,100,0),0))
-				self._led.set(self._start + self._step%8 + i + 7 , colors.color_scale((255,100,0),0))
-			if (diskcount > 0):
-				for j in range(diskcount): #8 LEDS per indicator
-					self._led.set(self._start + j, colors.Red)
-				if (self._step%2): #flash
-					for k in range(diskcount, 8):
-						self._led.set(self._start + k, colors.color_scale((255,100,25),255))
-				else: #all off
-					for k in range(diskcount, 8):
-						self._led.set(self._start + k, colors.color_scale((255,100,0),0))
-			else: #no disk problems
-						self._led.set(self._start + self._step%8 + i, colors.Green)"""
-			#self._led.set(self._start + self._step%8 + i + 8 , colors.Orange)
-			#self._led.set(self._start + self._step%8 + i + 16, colors.Yellow)
-			#self._led.set(self._start + self._step%8 + i + 24, colors.Green)
-			#self._led.set(self._start + self._step%8 + i + 32, colors.Blue)
-			#self._led.set(self._start + self._step%8 + i + 40, colors.Violet)
 			self._led.set((self._start + self._step + i + 0)%12 + 36, colors.Red)
 			self._led.set((self._start + self._step + i + 2)%12 + 36, colors.color_scale((255,100,25),255))
 			self._led.set((self._start + self._step + i + 4)%12 + 36, colors.Orange)
@@ -112,11 +78,6 @@ class ColorChase(BaseStripAnim):
 		if overflow >= 0:
 			self._step = overflow
 def authenticate():
-	#cc = pycurl.Curl()
-	#cc.setopt(pycurl.COOKIEJAR, 'cookie.txt')
-	#cc.setopt(pycurl.URL, "http://vcuhststorit.vcuhs.mcvh-vcu.edu/pro_users/login")
-	#cc.setopt(pycurl.USERAGENT,"Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0")
-	#cc.perform()
 	postdata = urllib.urlencode([("pro_user[email]", user), ("pro_user[password]",password)])
 	c = pycurl.Curl()
 	c.setopt(c.URL, "http://vcuhststorit.vcuhs.mcvh-vcu.edu/pro_users/login")
@@ -158,7 +119,6 @@ while True:
 			rdata = json.loads(data.getvalue())
 		except:
 			rdata = rdata
-	#with open('test.json') as data_file:
 		count = 0
 		diskcount = 0
 		offlinecount = 0
